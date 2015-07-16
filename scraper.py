@@ -37,10 +37,7 @@ for i in range(n):
 	#this tests for the length of the line
 	y = len(test_text_split)
 	#this checks if the line matches the hoard name case
-	if mint_line_match1(test_text) or mint_line_match2(test_text):
-		mint_line = test_text
-		print(test_text)
-	elif type_match(test_text):
+	if type_match(test_text):
 		type_name = test_text_split[1:(y-1)]
 		print(type_name)
 	elif dynasty_match(test_text):
@@ -49,3 +46,6 @@ for i in range(n):
 	elif hoard_name_match(test_text):
 		hoard_name = test_text_split[1:y]
 		print(hoard_name)
+	elif mint_line_match1(test_text) or mint_line_match2(test_text):
+		mint_line = test_text
+		print(test_text)
