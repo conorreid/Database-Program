@@ -54,7 +54,10 @@ def date_match1(strg, search=re.compile('^[\d]+/[\d]+').search):
 def date_match2(strg, search=re.compile('^[\d/]+[-][\d/]+').search):
 	return bool(search(strg))
 	
-def date_match3(strg, search=re.compile('^[\d]+\Z').search):
+def date_match3(strg, search=re.compile('^[\d][\d][\d]').search):
+	return bool(search(strg))
+	
+def date_match4(strg, search=re.compile('^[\d][\d][\d][\d]').search):
 	return bool(search(strg))
 	
 def weight_match(strg, search=re.compile('^[\d][.][\dg]+').search):
@@ -69,6 +72,12 @@ def frag_multiple(strg, search=re.compile('[\d]+[$][&]').search):
 def just_frag(strg, search=re.compile('^[#]').search):
 	return bool(search(strg))
 	
+def just_more1(strg, search=re.compile('^[\d]\Z').search):
+	return bool(search(strg))\
+	
+def just_more2(strg, search=re.compile('^[\d]\Z').search):
+	return bool(search(strg))\
+		
 #now let's make our for loop, looping n times where n is the number of lines in the document
 for i in range(n):
 	#this will create an easier variable to work with
@@ -106,7 +115,7 @@ for i in range(n):
 						mint = test_text_split[w]
 					else:
 						mint = mint + " " + test_text_split[w]
-				if date_match1(test_text_split[w]) or date_match2(test_text_split[w]) or date_match3(test_text_split[w]):
+				if date_match1(test_text_split[w]) or date_match2(test_text_split[w]) or date_match3(test_text_split[w]) or date_match4(test_text_split[w]):
 					date = test_text_split[w]
 					if w+2 < y:
 						if weight_match(test_text_split[w+1]) and just_frag(test_text_split[w+2]):
@@ -175,7 +184,7 @@ for i in range(n):
 										sheet_row = sheet_row + 1
 										z = z + 1
 										h = h + 1
-									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]):
+									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]) or date_match4(test_text_split[w+2]):
 										print(region, hoard_name, tpq, type, dynasty, leader, mint, date)
 										sheet.cell(row=sheet_row, column=10).value = region
 										sheet.cell(row=sheet_row, column=1).value = hoard_name
@@ -206,7 +215,7 @@ for i in range(n):
 										sheet_row = sheet_row + 1
 										z = z + 1
 										h = h + 1
-									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]):
+									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]) or date_match4(test_text_split[w+2]):
 										print(region, hoard_name, tpq, type, dynasty, leader, mint, date)
 										sheet.cell(row=sheet_row, column=10).value = region
 										sheet.cell(row=sheet_row, column=1).value = hoard_name
@@ -274,7 +283,23 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=7).value = date
 							sheet.cell(row=sheet_row, column=9).value = comment
 							sheet_row = sheet_row + 1
-							
+						if just_more1(test_text_split[w+1]) or just_more2(test_text_split[w+1]):
+							j = int(filter(unicode.isdigit, test_text_split[w+1]))
+							z = 0
+							h = 0
+							while z < j:
+								print(region, hoard_name, tpq, type, dynasty, leader, mint, date, weight, comment)
+								sheet.cell(row=sheet_row, column=10).value = region
+								sheet.cell(row=sheet_row, column=1).value = hoard_name
+								sheet.cell(row=sheet_row, column=2).value = tpq
+								sheet.cell(row=sheet_row, column=3).value = type
+								sheet.cell(row=sheet_row, column=4).value = dynasty
+								sheet.cell(row=sheet_row, column=5).value = leader
+								sheet.cell(row=sheet_row, column=6).value = mint
+								sheet.cell(row=sheet_row, column=7).value = date
+								sheet_row = sheet_row + 1
+								z = z + 1
+								h = h + 1
 					elif w + 1 < y:
 						if weight_match(test_text_split[w+1]):
 							weight = test_text_split[w+1]
@@ -397,6 +422,23 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=7).value = date
 							sheet.cell(row=sheet_row, column=9).value = comment
 							sheet_row = sheet_row + 1
+						if just_more1(test_text_split[w+1]) or just_more2(test_text_split[w+1]):
+							j = int(filter(unicode.isdigit, test_text_split[w+1]))
+							z = 0
+							h = 0
+							while z < j:
+								print(region, hoard_name, tpq, type, dynasty, leader, mint, date, weight, comment)
+								sheet.cell(row=sheet_row, column=10).value = region
+								sheet.cell(row=sheet_row, column=1).value = hoard_name
+								sheet.cell(row=sheet_row, column=2).value = tpq
+								sheet.cell(row=sheet_row, column=3).value = type
+								sheet.cell(row=sheet_row, column=4).value = dynasty
+								sheet.cell(row=sheet_row, column=5).value = leader
+								sheet.cell(row=sheet_row, column=6).value = mint
+								sheet.cell(row=sheet_row, column=7).value = date
+								sheet_row = sheet_row + 1
+								z = z + 1
+								h = h + 1
 	else:
 		if type_match(test_text):
 			type = test_text_split[1:(y-1)]
@@ -420,7 +462,7 @@ for i in range(n):
 						mint = test_text_split[w]
 					else:
 						mint = mint + " " + test_text_split[w]
-				if date_match1(test_text_split[w]) or date_match2(test_text_split[w]) or date_match3(test_text_split[w]):
+				if date_match1(test_text_split[w]) or date_match2(test_text_split[w]) or date_match3(test_text_split[w]) or date_match4(test_text_split[w]):
 					date = test_text_split[w]
 					if w+2 < y:
 						if weight_match(test_text_split[w+1]) and just_frag(test_text_split[w+2]):
@@ -489,7 +531,7 @@ for i in range(n):
 										sheet_row = sheet_row + 1
 										z = z + 1
 										h = h + 1
-									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]):
+									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]) or date_match4(test_text_split[w+2]):
 										print(region, hoard_name, tpq, type, dynasty, leader, mint, date)
 										sheet.cell(row=sheet_row, column=10).value = region
 										sheet.cell(row=sheet_row, column=1).value = hoard_name
@@ -520,7 +562,7 @@ for i in range(n):
 										sheet_row = sheet_row + 1
 										z = z + 1
 										h = h + 1
-									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]):
+									elif date_match1(test_text_split[w+2]) or date_match2(test_text_split[w+2]) or date_match3(test_text_split[w+2]) or date_match4(test_text_split[w+2]):
 										print(region, hoard_name, tpq, type, dynasty, leader, mint, date)
 										sheet.cell(row=sheet_row, column=10).value = region
 										sheet.cell(row=sheet_row, column=1).value = hoard_name
@@ -588,7 +630,23 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=7).value = date
 							sheet.cell(row=sheet_row, column=9).value = comment
 							sheet_row = sheet_row + 1
-							
+						if just_more1(test_text_split[w+1]) or just_more2(test_text_split[w+1]):
+							j = int(filter(unicode.isdigit, test_text_split[w+1]))
+							z = 0
+							h = 0
+							while z < j:
+								print(region, hoard_name, tpq, type, dynasty, leader, mint, date, weight, comment)
+								sheet.cell(row=sheet_row, column=10).value = region
+								sheet.cell(row=sheet_row, column=1).value = hoard_name
+								sheet.cell(row=sheet_row, column=2).value = tpq
+								sheet.cell(row=sheet_row, column=3).value = type
+								sheet.cell(row=sheet_row, column=4).value = dynasty
+								sheet.cell(row=sheet_row, column=5).value = leader
+								sheet.cell(row=sheet_row, column=6).value = mint
+								sheet.cell(row=sheet_row, column=7).value = date
+								sheet_row = sheet_row + 1
+								z = z + 1
+								h = h + 1	
 					elif w + 1 < y:
 						if weight_match(test_text_split[w+1]):
 							weight = test_text_split[w+1]
@@ -701,4 +759,21 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=7).value = date
 							sheet.cell(row=sheet_row, column=9).value = comment
 							sheet_row = sheet_row + 1
+						if just_more1(test_text_split[w+1]) or just_more2(test_text_split[w+1]):
+							j = int(filter(unicode.isdigit, test_text_split[w+1]))
+							z = 0
+							h = 0
+							while z < j:
+								print(region, hoard_name, tpq, type, dynasty, leader, mint, date, weight, comment)
+								sheet.cell(row=sheet_row, column=10).value = region
+								sheet.cell(row=sheet_row, column=1).value = hoard_name
+								sheet.cell(row=sheet_row, column=2).value = tpq
+								sheet.cell(row=sheet_row, column=3).value = type
+								sheet.cell(row=sheet_row, column=4).value = dynasty
+								sheet.cell(row=sheet_row, column=5).value = leader
+								sheet.cell(row=sheet_row, column=6).value = mint
+								sheet.cell(row=sheet_row, column=7).value = date
+								sheet_row = sheet_row + 1
+								z = z + 1
+								h = h + 1
 wb.save('Test3.xlsx')
