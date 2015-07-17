@@ -1,0 +1,8 @@
+Things to do with documents:
+1. Replace all ( and ) with nothing
+2. Replace all [ and ] with nothing
+3. Replace all --- with & <- do not forget the space after the &!
+4. Replace all frag. with #
+5. Replace all frags. with $
+6. Eliminate all special dicritic characters
+7. Turn listed numbers into real numbers
