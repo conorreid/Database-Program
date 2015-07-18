@@ -15,6 +15,15 @@ n = len(doc.paragraphs)
 #because this will stay constant for the entire document, we can define it here
 region = doc.paragraphs[0].text
 print(region)
+hoard_name = ""
+tpq = ""
+dynasty = ""
+date = ""
+weight = ""
+comment = "fragment"
+leader = ""
+mint = ""
+type = ""
 #now, let's define our various functions for finding different variables
 #first, we'll do hoard name
 def hoard_name_match(strg, search=re.compile('^[\d]+[.]\s+[A-Z]+').search):
@@ -122,7 +131,7 @@ for i in range(n):
 						sheet.cell(row=sheet_row, column=10).value = region
 						sheet.cell(row=sheet_row, column=1).value = hoard_name
 						sheet.cell(row=sheet_row, column=2).value = tpq
-						sheet.cell(row=sheet_row, column=3).value = type
+						sheet.cell(row=sheet_row, column=3).value = str(type)
 						sheet.cell(row=sheet_row, column=4).value = dynasty
 						sheet.cell(row=sheet_row, column=5).value = leader
 						sheet.cell(row=sheet_row, column=6).value = mint
@@ -136,7 +145,7 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=10).value = region
 							sheet.cell(row=sheet_row, column=1).value = hoard_name
 							sheet.cell(row=sheet_row, column=2).value = tpq
-							sheet.cell(row=sheet_row, column=3).value = type
+							sheet.cell(row=sheet_row, column=3).value = str(type)
 							sheet.cell(row=sheet_row, column=4).value = dynasty
 							sheet.cell(row=sheet_row, column=5).value = leader
 							sheet.cell(row=sheet_row, column=6).value = mint
@@ -150,7 +159,7 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=10).value = region
 							sheet.cell(row=sheet_row, column=1).value = hoard_name
 							sheet.cell(row=sheet_row, column=2).value = tpq
-							sheet.cell(row=sheet_row, column=3).value = type
+							sheet.cell(row=sheet_row, column=3).value = str(type)
 							sheet.cell(row=sheet_row, column=4).value = dynasty
 							sheet.cell(row=sheet_row, column=5).value = leader
 							sheet.cell(row=sheet_row, column=6).value = mint
@@ -303,7 +312,7 @@ for i in range(n):
 								sheet.cell(row=sheet_row, column=10).value = region
 								sheet.cell(row=sheet_row, column=1).value = hoard_name
 								sheet.cell(row=sheet_row, column=2).value = tpq
-								sheet.cell(row=sheet_row, column=3).value = type
+								sheet.cell(row=sheet_row, column=3).value = str(type)
 								sheet.cell(row=sheet_row, column=4).value = dynasty
 								sheet.cell(row=sheet_row, column=5).value = leader
 								sheet.cell(row=sheet_row, column=6).value = mint
@@ -316,7 +325,7 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=10).value = region
 							sheet.cell(row=sheet_row, column=1).value = hoard_name
 							sheet.cell(row=sheet_row, column=2).value = tpq
-							sheet.cell(row=sheet_row, column=3).value = type
+							sheet.cell(row=sheet_row, column=3).value = str(type)
 							sheet.cell(row=sheet_row, column=4).value = dynasty
 							sheet.cell(row=sheet_row, column=5).value = leader
 							sheet.cell(row=sheet_row, column=6).value = mint
@@ -329,7 +338,7 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=10).value = region
 							sheet.cell(row=sheet_row, column=1).value = hoard_name
 							sheet.cell(row=sheet_row, column=2).value = tpq
-							sheet.cell(row=sheet_row, column=3).value = type
+							sheet.cell(row=sheet_row, column=3).value = str(type)
 							sheet.cell(row=sheet_row, column=4).value = dynasty
 							sheet.cell(row=sheet_row, column=5).value = leader
 							sheet.cell(row=sheet_row, column=6).value = mint
@@ -433,6 +442,7 @@ for i in range(n):
 							sheet.cell(row=sheet_row, column=7).value = date
 							sheet_row = sheet_row + 1
 						elif just_frag(test_text_split[w+1]):
+							comment = "fragment"
 							print(region, hoard_name, tpq, type, dynasty, leader, mint, date, comment)
 							sheet.cell(row=sheet_row, column=10).value = region
 							sheet.cell(row=sheet_row, column=1).value = hoard_name
