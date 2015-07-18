@@ -6,3 +6,4 @@ Things to do with documents:
 5. Replace all frags. with $
 6. Eliminate all special dicritic characters
 7. Turn listed numbers into real numbers
+8. Make sure all text is neither sub scripted nor superscripted
